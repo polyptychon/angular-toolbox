@@ -1,0 +1,6 @@
+[
+  { id: "1" , description:"Administrator" },
+  { id: "2" , description:"Power User" },
+  { id: "3" , description:"Internal User" },
+  { id: "4" , description:"Guest" },
+]
