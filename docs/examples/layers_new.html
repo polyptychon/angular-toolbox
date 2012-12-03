@@ -28,24 +28,9 @@
       <form action="#" method="POST">
         
         <!-- ANGULAR COMPONENTS : START -->
-        <ngt-ui-fieldset title="Προσθήκη Επιπέδου" ngt-ui-subtitle="(Νέα Εγγραφή)">
-          <ngt-ui-text-block title="Τίτλος" ngt-ui-helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" name="layer[title]" id="layer_title" ngt-ui-vd-required="true" ngt-ui-vd-required-error-text="Ο τίτλος είναι απαραίτητος"/>
-          <ngt-ui-text-block title="Κωδικός" ngt-ui-helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό" name="layer[code]" id="layer_code" ngt-ui-vd-required="true" ngt-ui-vd-required-error-text="Ο κωδικός είναι απαραίτητος" ngt-ui-md-format="[A-Za-z]" ng-ui-md-format-error-text="Ο κωδικός πρέπει να αποτελείται αποκλειστικά από ΑΓΓΛΙΚΟΥΣ χαρακτήρες" />
-          <ngt-ui-integer-block title="Σειρά εμφάνισης" ngt-ui-helper-text="Καθορίζει τη σειρά με την οποία θα εμφανίζεται το επίπεδο στο χάρτη" name="layer[position]" id="layer_position" />
-
-          <ngt-ui-checkbox-block title="Ενεργό" ngt-ui-helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη" name="layer[is_active]" id="layer_is_active" />
-          <ngt-ui-checkbox-block title="Κηρυγμένο" ngt-ui-helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη ΣΕ ΜΗ ΣΥΝΔΕΔΕΜΕΝΟΥΣ ΧΡΗΣΤΕΣ" name="layer[is_public]" id="layer_is_public" />
-
-          <ngt-ui-editor-block title="Περιγραφή" ngt-ui-editor-markup="html" ngt-ui-helper-text="Θα εμφανίζεται  ως tooltip όταν ο χρήστης κάνει mouse-hover πάνω από το όνομα του επιπέδου. Μπορείτε να χρησιμοποιήσετε HTML για να δώσετε έμφαση" name="layer[description]" id="layer_description" />
-          <ngt-ui-editor-block title="Επιλογές" ngt-ui-editor-markup="json" ngt-ui-helper-text="Οι επιλογές σχετικά με αυτό το επίπεδο (μόνο για προχωρημένους χρήστες)" name="layer[options]" id="layer_options" />
-        </ngt-ui-fieldset>
-        
-
-
-        
         <fieldset ngt-title="Προσθήκη Επιπέδου" ngt-subtitle="(Νέα Εγγραφή)">
           <input-block title="Τίτλος" helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" name="layer[title]" id="layer_title" required="true" required-error-text="Ο τίτλος είναι απαραίτητος"/>
-          <input-email-block title="Κωδικός" helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό" name="layer[code]" id="layer_code" required="true" required-error-text="Ο κωδικός είναι απαραίτητος" format="[A-Za-z]" format-error-text="Ο κωδικός πρέπει να αποτελείται αποκλειστικά από ΑΓΓΛΙΚΟΥΣ χαρακτήρες" />
+          <input-block title="Κωδικός" helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό" name="layer[code]" id="layer_code" required="true" required-error-text="Ο κωδικός είναι απαραίτητος" format="[A-Za-z]" format-error-text="Ο κωδικός πρέπει να αποτελείται αποκλειστικά από ΑΓΓΛΙΚΟΥΣ χαρακτήρες" />
           <input-integer-block title="Σειρά εμφάνισης" helper-text="Καθορίζει τη σειρά με την οποία θα εμφανίζεται το επίπεδο στο χάρτη" name="layer[position]" id="layer_position" />
 
           <input-checkbox-block title="Ενεργό" helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη" name="layer[is_active]" id="layer_is_active" />
@@ -54,7 +39,6 @@
           <editor-block title="Περιγραφή" editor-markup-type="html" helper-text="Θα εμφανίζεται  ως tooltip όταν ο χρήστης κάνει mouse-hover πάνω από το όνομα του επιπέδου. Μπορείτε να χρησιμοποιήσετε HTML για να δώσετε έμφαση" name="layer[description]" id="layer_description" />
           <editor-block title="Επιλογές" editor-markup-type="json" helper-text="Οι επιλογές σχετικά με αυτό το επίπεδο (μόνο για προχωρημένους χρήστες)" name="layer[options]" id="layer_options" />
         </fieldset>
-        
         <!-- ANGULAR COMPONENTS : END -->
         
         <div class="form-actions">

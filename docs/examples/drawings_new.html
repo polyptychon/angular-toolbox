@@ -28,18 +28,18 @@
       <form action="#" method="POST">
         
         <!-- ANGULAR COMPONENTS : START -->
-        <ngt-ui-fieldset title="Προσθήκη Σχεδίου" ngt-ui-subtitle="(Νέα Εγγραφή)">
-          <ngt-ui-text-block title="Τίτλος" ngt-ui-helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" name="drawing[title]" id="drawing_title" ngt-ui-vd-required="true" ngt-ui-vd-required-error-text="Ο τίτλος είναι απαραίτητος"/>
-          <ngt-ui-text-block title="Κωδικός" ngt-ui-helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το σχέδιο αυτό" name="drawing[code]" id="drawing_code" ngt-ui-vd-required="true" ngt-ui-vd-required-error-text="Ο κωδικός είναι απαραίτητος" ng-ui-md-format="[A-Za-z]" ng-ui-md-format-error-text="Ο κωδικός πρέπει να αποτελείται αποκλειστικά από ΑΓΓΛΙΚΟΥΣ χαρακτήρες" />
+        <fieldset ngt-title="Προσθήκη Σχεδίου" ngt-subtitle="(Νέα Εγγραφή)">
+          <input-block title="Τίτλος" helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" name="drawing[title]" id="drawing_title" required="true" required-error-text="Ο τίτλος είναι απαραίτητος"/>
+          <input-block title="Κωδικός" helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το σχέδιο αυτό" name="drawing[code]" id="drawing_code" required="true" required-error-text="Ο κωδικός είναι απαραίτητος" format="[A-Za-z]" format-error-text="Ο κωδικός πρέπει να αποτελείται αποκλειστικά από ΑΓΓΛΙΚΟΥΣ χαρακτήρες" />
 
-          <ngt-ui-select-block ngt-ui-select-items="data/layers.json" ngt-ui-select-options="{fields:{value:'id', label:'description'}, minCharsToAutoComplete:1, openOnClick:true}" title="Επίπεδο(Layer)" ngt-ui-helper-text="Επιλέξτε το Επίπεδο στο οποίο θα εμφανίζεται αυτό το σχέδιο" ngt-ui-vd-required ngt-ui-vd-required-error-text="Πρέπει να επιλέξετε Επίπεδο" />
+          <select-block select-items="data/layers.json" select-options="{fields:{value:'id', label:'description'}, minCharsToAutoComplete:1, openOnClick:true}" title="Επίπεδο(Layer)" helper-text="Επιλέξτε το Επίπεδο στο οποίο θα εμφανίζεται αυτό το σχέδιο" required required-error-text="Πρέπει να επιλέξετε Επίπεδο" />
 
-          <ngt-ui-checkbox-block title="Ενεργό" ngt-ui-helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη" name="drawing[is_active]" id="drawing_is_active" />
-          <ngt-ui-checkbox-block title="Κηρυγμένο" ngt-ui-helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη ΣΕ ΜΗ ΣΥΝΔΕΔΕΜΕΝΟΥΣ ΧΡΗΣΤΕΣ" name="drawing[is_public]" id="drawing_is_public" />
+          <input-checkbox-block title="Ενεργό" helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη" name="drawing[is_active]" id="drawing_is_active" />
+          <input-checkbox-block title="Κηρυγμένο" helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη ΣΕ ΜΗ ΣΥΝΔΕΔΕΜΕΝΟΥΣ ΧΡΗΣΤΕΣ" name="drawing[is_public]" id="drawing_is_public" />
 
-          <ngt-ui-editor-block title="Περιγραφή" ngt-ui-editor-markup="html" ngt-ui-helper-text="Θα εμφανίζεται  ως tooltip όταν ο χρήστης κάνει mouse-hover πάνω από το όνομα του επιπέδου. Μπορείτε να χρησιμοποιήσετε HTML για να δώσετε έμφαση" name="drawing[description]" id="drawing_description" />
-          <ngt-ui-editor-block title="Markup σχεδίου (KML)" ngt-ui-editor-markup="xml" ngt-ui-helper-text="Ο KML κώδικας (XML) για το σχέδιο αυτό" name="drawing[options]" id="drawing_options" />
-        </ngt-ui-fieldset>
+          <editor-block title="Περιγραφή" editor-markup-type="html" helper-text="Θα εμφανίζεται  ως tooltip όταν ο χρήστης κάνει mouse-hover πάνω από το όνομα του επιπέδου. Μπορείτε να χρησιμοποιήσετε HTML για να δώσετε έμφαση" name="drawing[description]" id="drawing_description" />
+          <editor-block title="Markup σχεδίου (KML)" editor-markup-type="xml" helper-text="Ο KML κώδικας (XML) για το σχέδιο αυτό" name="drawing[options]" id="drawing_options" />
+        </fieldset>
         <!-- ANGULAR COMPONENTS : END -->
         
         <div class="form-actions">
