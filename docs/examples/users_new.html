@@ -32,7 +32,7 @@
       <form action="#" method="GET">
 
         <fieldset ngt-title="Προσθήκη Χρήστη" ngt-subtitle="(Νέα Εγγραφή)">
-            <!--
+
             <hbox horizontal-gap="10px">
                 <p>Hallo 1</p>
                 <p>Hallo 2</p>
@@ -41,20 +41,32 @@
                 <p>Hallo 1</p>
                 <p>Hallo 2</p>
             </hbox>
-            -->
+
             <hbox>
-                <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
-                <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
-                <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
+                <vbox>
+                    <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
+                    <input-email-block title="Email" helper-text="Είναι το email στο οποιο θα μπορεί το σύστημα να σας στέλνει αυτόματες ειδοποιήσεις" name="user[email]" ngt-id="user_email" required required-error-text="Το email είναι απαραίτητο" format-error-text="Το email πρέπει να είναι της μορφής 'user@test.com'"></input-email-block>
+                </vbox>
+                <vbox>
+                    <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
+                    <input-email-block title="Email" helper-text="Είναι το email στο οποιο θα μπορεί το σύστημα να σας στέλνει αυτόματες ειδοποιήσεις" name="user[email]" ngt-id="user_email" required required-error-text="Το email είναι απαραίτητο" format-error-text="Το email πρέπει να είναι της μορφής 'user@test.com'"></input-email-block>
+                </vbox>
+                <vbox>
+                    <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
+                    <input-email-block title="Email" helper-text="Είναι το email στο οποιο θα μπορεί το σύστημα να σας στέλνει αυτόματες ειδοποιήσεις" name="user[email]" ngt-id="user_email" required required-error-text="Το email είναι απαραίτητο" format-error-text="Το email πρέπει να είναι της μορφής 'user@test.com'"></input-email-block>
+                </vbox>
+            </hbox>
+
+            <hbox>
                 <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
                 <input-email-block title="Email" helper-text="Είναι το email στο οποιο θα μπορεί το σύστημα να σας στέλνει αυτόματες ειδοποιήσεις" name="user[email]" ngt-id="user_email" required required-error-text="Το email είναι απαραίτητο" format-error-text="Το email πρέπει να είναι της μορφής 'user@test.com'"></input-email-block>
             </hbox>
-            <!--
+
             <hbox>
                 <input-block title="Όνομα" helper-text="Το πραγματικό σας όνομα" name="user[name]" ngt-id="user_name"></input-block>
                 <input-block title="Επώνυμο" helper-text="Το πραγματικό σας επώνυμο" name="user[surname]" ngt-id="user_surname"></input-block>
             </hbox>
-            -->
+
             <select-block multiple="true" select-items="data/roles.json" select-options="{fields:{value:'id', label:'description'}, minCharsToAutoComplete:1, openOnClick:true}" title="Ρόλοι" helper-text="Επιλέξτε τους ρόλους που θα έχει αυτός ο χρήστης" required required-error-text="Πρέπει να επιλέξετε τουλάχιστον ένα Ρόλο" />
         </fieldset>
 

@@ -5,6 +5,14 @@
 .ngt-hbox > * {
   float: left;
 }
+.ngt-vbox {
+    clear: left;
+    display: block;
+}
+.ngt-vbox > * {
+    float: left;
+    clear: left;
+}
 .ngt-title {
     border-bottom: 1px solid #AAA;
     padding-bottom: 10px;

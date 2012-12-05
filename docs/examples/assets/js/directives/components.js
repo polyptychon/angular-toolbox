@@ -12,6 +12,39 @@ angular.module('ngt', [])
             }
         }
     })
+    .directive('vbox', function($http, $parse, $compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                verticalGap: "@"
+            },
+            compile: function(element, attrs) {
+                if (typeof attrs.verticalGap==="undefined") attrs.verticalGap = "0px";
+                angular.forEach($(element).children(),function(child) {
+                    if ($(child).index()!=$(element).children().length-1) {
+                        $(child).addClass('added-gap');
+                        $(child).css('margin-bottom', attrs.verticalGap);
+                    }
+                });
+                element.html('<div class="ngt-vbox">'+element.html()+'</div>');
+
+                return function linkFn(scope, element, attrs) {
+                    scope.$watch('verticalGap', function(value) {
+                        if (typeof value==="undefined") return;
+                        scope.verticalGap = value;
+                        var children = $(element).children().children('.added-gap');
+                        angular.forEach(children,function(child) {
+                            if ($(child).index()!=children.length-1) {
+                                $(child).addClass('added-gap');
+                                $(child).css('margin-bottom', value);
+                            }
+                        });
+
+                    });
+                }
+            }
+        }
+    })
     .directive('hbox', function($http, $parse, $compile) {
         return {
             restrict: 'E',
@@ -43,11 +76,12 @@ angular.module('ngt', [])
                     function setHorizontalGap(value) {
                         if (typeof value==="undefined") value = attrs.horizontalGap;
                         if (value=="0px") return;
-                        angular.forEach($(element).find('.added-gap'),function(child) {
+                        var children = $(element).children().children('.added-gap');
+                        angular.forEach(children,function(child) {
                             $(child).css('margin-left', value);
                             $(child).css('clear', 'none');
                         });
-                        angular.forEach($(element).find('.added-gap'),function(child) {
+                        angular.forEach(children,function(child) {
                             if ($(child).index()>0 && $(child).offset().top==$(child).prev().offset().top) {
                                 $(child).css('margin-left', value);
                             } else {
