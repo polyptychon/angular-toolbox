@@ -1,6 +1,17 @@
 'use strict';
 
 angular.module('ngt', [])
+    .directive('ngtTitle', function($http, $parse, $compile) {
+        return {
+            restrict: 'A',
+            transclude: true,
+            templateUrl: "assets/partials/ngt/ngt-title.html",
+            scope: {
+                ngtTitle: "@",
+                ngtSubtitle: "@"
+            }
+        }
+    })
     .directive('hbox', function($http, $parse, $compile) {
         return {
             restrict: 'E',
@@ -43,6 +54,17 @@ angular.module('ngt', [])
         }
     })
     .directive('inputEmailBlock', function($http, $parse, $compile) {
+        return {
+            restrict: 'E',
+            templateUrl: "assets/partials/ngt/input-email-box.html",
+            scope: {
+                title: "@",
+                ngtId: "@",
+                name: "@"
+            }
+        }
+    })
+    .directive('inputTextfieldBlock', function($http, $parse, $compile) {
         return {
             restrict: 'E',
             templateUrl: "assets/partials/ngt/input-email-box.html",

@@ -1,8 +1,12 @@
 .ngt-hbox {
-    clear: left;
-    display: block;
+  clear: left;
+  display: block;
 }
-
 .ngt-hbox > * {
-    float: left;
+  float: left;
+}
+.ngt-title {
+    border-bottom: 1px solid #AAA;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
