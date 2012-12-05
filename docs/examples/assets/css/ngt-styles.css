@@ -1,0 +1,8 @@
+.ngt-hbox {
+    clear: left;
+    display: block;
+}
+
+.ngt-hbox > * {
+    float: left;
+}

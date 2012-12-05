@@ -1,60 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="exampleApp">
   <head>
-    <title>Add New User</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="assets/lib/bootstrap-2.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/lib/bootstrap-2.1.1/css/bootstrap-responsive.min.css">
+      <title>Add New User</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="assets/lib/bootstrap-2.1.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="assets/lib/bootstrap-2.1.1/css/bootstrap-responsive.min.css">
+      <link rel="stylesheet" href="assets/css/ngt-styles.css">
 
-    <script type="text/javascript" src="assets/lib/angular-1.0.2/angular.min.js"></script>
-    <script type="text/javascript" src="assets/lib/underscore/underscore-min.js"></script>
-    <script type="text/javascript" src="assets/lib/jquery-1.8.1/jquery-1.8.1.js"></script>
-    <script type="text/javascript" src="assets/lib/bootstrap-2.1.1/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="assets/lib/angular-1.0.3/angular.min.js"></script>
+      <script type="text/javascript" src="assets/lib/underscore/underscore-min.js"></script>
+      <script type="text/javascript" src="assets/lib/jquery-1.8.1/jquery-1.8.1.js"></script>
+      <script type="text/javascript" src="assets/lib/bootstrap-2.1.1/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="assets/js/directives/components.js"></script>
+      <script type="text/javascript" src="assets/js/app.js"></script>
   </head>
   <body>
+
     <div class="container">
-      
+
       <h2>Παραδείγματα Οθονών GIS</h2>
-      
+
       <ul class="breadcrumb">
         <li><a href="index.html">Λίστα Παραδειγμάτων</a> <span class="divider">/</span></li>
         <li class="active">Προσθήκη νέου Χρήστη</li>
-      </ul>      
-      
+      </ul>
+
       <div>
         Οθόνη στο GIS : <a href="http://nobits.dyndns.ws:3000/accounts/new" target="_blank">http://nobits.dyndns.ws:3000/accounts/new</a>
       </div>
-      
-      <form action="#" method="POST">
-        
-        <!-- ANGULAR COMPONENTS : START -->
+
+      <form action="#" method="GET">
+
         <fieldset ngt-title="Προσθήκη Χρήστη" ngt-subtitle="(Νέα Εγγραφή)">
-          <hbox>
-            <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"/>
-            <input-email-block title="Email" helper-text="Είναι το email στο οποιο θα μπορεί το σύστημα να σας στέλνει αυτόματες ειδοποιήσεις" name="user[email]" id="user_email" required required-error-text="Το email είναι απαραίτητο" format-error-text="Το email πρέπει να είναι της μορφής 'user@test.com'" />
-          </hbox>
 
-          <hbox>
-            <input-block title="Όνομα" helper-text="Το πραγματικό σας όνομα" name="user[name]" id="user_name" />
-            <input-block title="Επώνυμο" helper-text="Το πραγματικό σας επώνυμο" name="user[surname]" id="user_surname" />
-          </hbox>
+            <hbox horizontal-gap="50px">
+                <p>Hallo 1</p>
+                <p>Hallo 2</p>
+                <p>Hallo 1</p>
+                <p>Hallo 2</p>
+                <p>Hallo 1</p>
+                <p>Hallo 2</p>
+            </hbox>
 
-          <select-block multiple="true" select-items="data/roles.json" select-options="{fields:{value:'id', label:'description'}, minCharsToAutoComplete:1, openOnClick:true}" title="Ρόλοι" helper-text="Επιλέξτε τους ρόλους που θα έχει αυτός ο χρήστης" required required-error-text="Πρέπει να επιλέξετε τουλάχιστον ένα Ρόλο" />
+            <hbox>
+                <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
+                <input-email-block title="Email" helper-text="Είναι το email στο οποιο θα μπορεί το σύστημα να σας στέλνει αυτόματες ειδοποιήσεις" name="user[email]" ngt-id="user_email" required required-error-text="Το email είναι απαραίτητο" format-error-text="Το email πρέπει να είναι της μορφής 'user@test.com'"></input-email-block>
+            </hbox>
+
+            <hbox>
+                <input-block title="Όνομα" helper-text="Το πραγματικό σας όνομα" name="user[name]" ngt-id="user_name"></input-block>
+                <input-block title="Επώνυμο" helper-text="Το πραγματικό σας επώνυμο" name="user[surname]" ngt-id="user_surname"></input-block>
+            </hbox>
+
+            <select-block multiple="true" select-items="data/roles.json" select-options="{fields:{value:'id', label:'description'}, minCharsToAutoComplete:1, openOnClick:true}" title="Ρόλοι" helper-text="Επιλέξτε τους ρόλους που θα έχει αυτός ο χρήστης" required required-error-text="Πρέπει να επιλέξετε τουλάχιστον ένα Ρόλο" />
         </fieldset>
 
         <fieldset ngt-title="Κωδικός Πρόσβασης">
-          <input-block title="Κωδικός" name="user[password]" id="user_password" required required-text="Ο κωδικός είναι απαραίτητος"/>
-          <input-textfield-block title="Επιβεβαίωση Κωδικού" name="user[password]" id="user_password" same="user[password]" same-error-text="Ο κωδικός και η επιβεβαίωση κωδικόυ πρέπει να είναι ίδια"/>
+            <input-block title="Κωδικός" name="user[password]" ngt-id="user_password" required required-text="Ο κωδικός είναι απαραίτητος"></input-block>
+            <input-textfield-block title="Επιβεβαίωση Κωδικού" name="user[password]" ngt-id="user_password" same="user[password]" same-error-text="Ο κωδικός και η επιβεβαίωση κωδικόυ πρέπει να είναι ίδια"/></input-textfield-block>
         </fieldset>
-        <!-- ANGULAR COMPONENTS : END -->
-        
+
         <div class="form-actions">
-          <input class="btn btn-primary" value="Προσθήκη Χρήστη" type="submit" data-original-title="Προσθήκη Χρήστη">
-          <span class="responsive-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <a class="btn" href="#" data-original-title="Ακύρωση">Ακύρωση</a>
-        </div>          
-          
-      </form> 
+            <input class="btn btn-primary" value="Προσθήκη Χρήστη" type="submit" data-original-title="Προσθήκη Χρήστη">
+            <span class="responsive-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a class="btn" href="#" data-original-title="Ακύρωση">Ακύρωση</a>
+        </div>
+
+      </form>
     </div>
   </body>
 <html>
