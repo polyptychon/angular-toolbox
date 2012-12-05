@@ -1,20 +1,27 @@
 .ngt-hbox {
   clear: left;
   display: block;
+  float: left;
+  border: 1px solid #002a80;
+  margin: 2px;
+  padding: 2px;
 }
 .ngt-hbox > * {
   float: left;
 }
 .ngt-vbox {
-    clear: left;
-    display: block;
+  clear: left;
+  display: block;
+  float: left;
+  border: 1px solid #a9302a;
+  margin: 2px;
+  padding: 2px;
 }
 .ngt-vbox > * {
-    float: left;
-    clear: left;
+  clear: left;
 }
 .ngt-title {
-    border-bottom: 1px solid #AAA;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+  border-bottom: 1px solid #AAA;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }

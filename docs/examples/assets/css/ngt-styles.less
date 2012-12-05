@@ -1,6 +1,7 @@
 .ngt-hbox {
   clear: left;
   display: block;
+  .highlightForHelp(#002a80);
   > * {
     float: left;
   }
@@ -8,6 +9,7 @@
 .ngt-vbox {
   clear: left;
   display: block;
+  .highlightForHelp(#a9302a);
   > * {
     clear: left;
   }
@@ -16,4 +18,11 @@
   border-bottom: 1px solid #AAA;
   padding-bottom: 10px;
   margin-bottom: 20px;
+}
+
+.highlightForHelp(@color) {
+  float: left;
+  border: 1px solid @color;
+  margin: 2px;
+  padding: 2px;
 }
