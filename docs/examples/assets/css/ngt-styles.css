@@ -30,3 +30,6 @@
 .editor-block > .editor-block-switch .editor-block-default {
   min-height: 290px;
 }
+input-block {
+  display: block;
+}

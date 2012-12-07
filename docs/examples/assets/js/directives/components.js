@@ -57,6 +57,7 @@ angular.module('ngt', [])
                 verticalGap: "@"
             },
             compile: function(element, attrs) {
+                console.log(attrs.verticalGap);
                 if (typeof attrs.verticalGap==="undefined") attrs.verticalGap = "0px";
                 angular.forEach($(element).children(),function(child) {
                     if ($(child).index()!=$(element).children().length-1) {
@@ -89,44 +90,26 @@ angular.module('ngt', [])
                 horizontalGap: "@"
             },
             compile: function(element, attrs) {
-
                 if (typeof attrs.horizontalGap==="undefined") attrs.horizontalGap = "20px";
-                angular.forEach($(element).children(),function(child) {
-                    if (typeof attrs.horizontalGap!=='undefined' && $(child).index()>0) {
-                        $(child).css('margin-left', attrs.horizontalGap);
+                setHorizontalGap(attrs.horizontalGap, $(element).children());
+
+                element.html('<div class="ngt-hbox" style="margin-left:-'+attrs.horizontalGap+'">'+element.html()+'</div>');
+
+                function setHorizontalGap(value, children) {
+                    if (typeof value==="undefined") value = attrs.horizontalGap;
+                    children.parent().css('margin-left', "-"+value);
+                    angular.forEach(children,function(child) {
+                        $(child).css('margin-left', value);
                         $(child).addClass('added-gap');
-                    }
-                });
-
-                element.html('<div class="ngt-hbox">'+element.html()+'</div>');
-
-                return function linkFn(scope, element, attrs) {
-                    $(window).bind('resize', function() {
-                        setHorizontalGap();
                     });
-                    scope.$watch('horizontalGap', function(value) {
+                }
+                return function linkFn(scope, element, attrs) {
+                    scope.$watch('horizontalGap', function(value)                         
                         if (typeof value==="undefined") return;
                         scope.horizontalGap = value;
-                        setHorizontalGap(value);
-
+                        setHorizontalGap(value, $(element).children().children('.added-gap'));
                     });
-                    function setHorizontalGap(value) {
-                        if (typeof value==="undefined") value = attrs.horizontalGap;
-                        if (value=="0px") return;
-                        var children = $(element).children().children('.added-gap');
-                        angular.forEach(children,function(child) {
-                            $(child).css('margin-left', value);
-                            $(child).css('clear', 'none');
-                        });
-                        angular.forEach(children,function(child) {
-                            if ($(child).index()>0 && $(child).offset().top==$(child).prev().offset().top) {
-                                $(child).css('margin-left', value);
-                            } else {
-                                $(child).css('clear', 'left');
-                                $(child).css('margin-left', "0px");
-                            }
-                        });
-                    }
+
                 }
             }
         }
