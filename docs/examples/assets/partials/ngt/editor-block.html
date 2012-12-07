@@ -1,5 +1,14 @@
-<div class="control-block">
+<div class="control-block editor-block" style="{{style}}">
     <label class="control-label" for="{{ngtId}}">{{title}}</label>
-    <textarea ui-if="false" class="editor-block" rows="{{rows}}" cols="{{cols}}" id="{{ngtId}}" name="{{name}}"></textarea>
-    <textarea ui-if="true" ui-tinymce ng-model="tinymce"></textarea>
+    <div ng-switch on="editorMarkupType" class="editor-block-switch">
+        <div ng-switch-when="html">
+            <textarea style="width: 100%; height:100%;" ui-tinymce ng-model="tinymce"></textarea>
+        </div>
+        <div ng-switch-when="json">
+            <textarea style="width: 100%; height:100%;" ui-codemirror="{theme:'monokai'}" ng-model="codeMirrorModel"></textarea>
+        </div>
+        <div ng-switch-default style="padding-right: 15px;">
+            <textarea style="width: 100%;" class="editor-block-default" rows="{{rows}}" cols="{{cols}}" id="{{ngtId}}" name="{{name}}"></textarea>
+        </div>
+    </div>
 </div>

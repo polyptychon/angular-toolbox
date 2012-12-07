@@ -24,3 +24,9 @@
   display: inline-block;
   margin-left: 5px;
 }
+.editor-block > .editor-block-switch {
+  margin-bottom: 10px;
+}
+.editor-block > .editor-block-switch .editor-block-default {
+  min-height: 290px;
+}

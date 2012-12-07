@@ -98,6 +98,7 @@ angular.module('ngt', [])
             restrict: 'E',
             templateUrl: "assets/partials/ngt/input-block.html",
             scope: {
+                style: "@",
                 title: "@",
                 ngtId: "@",
                 name: "@"
@@ -109,6 +110,7 @@ angular.module('ngt', [])
             restrict: 'E',
             templateUrl: "assets/partials/ngt/input-email-block.html",
             scope: {
+                style: "@",
                 title: "@",
                 ngtId: "@",
                 name: "@"
@@ -120,6 +122,7 @@ angular.module('ngt', [])
             restrict: 'E',
             templateUrl: "assets/partials/ngt/input-email-block.html",
             scope: {
+                style: "@",
                 title: "@",
                 ngtId: "@",
                 name: "@"
@@ -131,6 +134,7 @@ angular.module('ngt', [])
             restrict: 'E',
             templateUrl: "assets/partials/ngt/input-integer-block.html",
             scope: {
+                style: "@",
                 title: "@",
                 ngtId: "@",
                 name: "@"
@@ -142,6 +146,7 @@ angular.module('ngt', [])
             restrict: 'E',
             templateUrl: "assets/partials/ngt/input-checkbox-block.html",
             scope: {
+                style: "@",
                 title: "@",
                 ngtId: "@",
                 name: "@"
@@ -153,11 +158,13 @@ angular.module('ngt', [])
             restrict: 'E',
             templateUrl: "assets/partials/ngt/editor-block.html",
             scope: {
+                style: "@",
                 title: "@",
                 ngtId: "@",
                 name: "@",
                 cols: "@",
-                rows: "@"
+                rows: "@",
+                editorMarkupType: "@"
             }
         }
     })

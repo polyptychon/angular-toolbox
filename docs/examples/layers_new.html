@@ -15,6 +15,7 @@
       <script type="text/javascript" src="assets/lib/underscore/underscore-min.js"></script>
       <script type="text/javascript" src="assets/lib/prettify/prettify.js"></script>
       <script type="text/javascript" src="assets/lib/codemirror/codemirror.js"></script>
+      <script type="text/javascript" src="assets/lib/codemirror/mode/javascript/javascript.js"></script>
       <script type="text/javascript" src="assets/lib/tinymce/jquery.tinymce.js"></script>
       <script type="text/javascript" src="assets/lib/tinymce/tiny_mce_jquery_src.js"></script>
       <script type="text/javascript" src="assets/lib/bootstrap-2.1.1/js/bootstrap.min.js"></script>
@@ -49,8 +50,10 @@
                 <input-checkbox-block title="Ενεργό" helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη" name="layer[is_active]" id="layer_is_active"></input-checkbox-block>
                 <input-checkbox-block title="Κηρυγμένο" helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη ΣΕ ΜΗ ΣΥΝΔΕΔΕΜΕΝΟΥΣ ΧΡΗΣΤΕΣ" name="layer[is_public]" id="layer_is_public"></input-checkbox-block>
 
-                <editor-block title="Περιγραφή" editor-markup-type="html" helper-text="Θα εμφανίζεται  ως tooltip όταν ο χρήστης κάνει mouse-hover πάνω από το όνομα του επιπέδου. Μπορείτε να χρησιμοποιήσετε HTML για να δώσετε έμφαση" name="layer[description]" id="layer_description"></editor-block>
-                <editor-block title="Επιλογές" editor-markup-type="json" helper-text="Οι επιλογές σχετικά με αυτό το επίπεδο (μόνο για προχωρημένους χρήστες)" name="layer[options]" id="layer_options"></editor-block>
+                <editor-block style="width:400px;" title="Περιγραφή" editor-markup-type="html" helper-text="Θα εμφανίζεται  ως tooltip όταν ο χρήστης κάνει mouse-hover πάνω από το όνομα του επιπέδου. Μπορείτε να χρησιμοποιήσετε HTML για να δώσετε έμφαση" name="layer[description]" id="layer_description"></editor-block>
+                <editor-block style="width:400px;" title="Επιλογές" editor-markup-type="json" helper-text="Οι επιλογές σχετικά με αυτό το επίπεδο (μόνο για προχωρημένους χρήστες)" name="layer[options]" id="layer_options"></editor-block>
+                <editor-block style="width:400px;" title="Επιλογές" editor-markup-type="default" helper-text="Οι επιλογές σχετικά με αυτό το επίπεδο (μόνο για προχωρημένους χρήστες)" name="layer[options]" id="layer_options"></editor-block>
+
             </vbox>
         </fieldset>
         <!-- ANGULAR COMPONENTS : END -->
