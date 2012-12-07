@@ -96,7 +96,7 @@ angular.module('ngt', [])
                 element.html('<div class="ngt-hbox" style="margin-left:-'+attrs.horizontalGap+'">'+element.html()+'</div>');
 
                 function setHorizontalGap(value, children) {
-                    if (typeof value==="undefined") value = attrs.horizontalGap;
+                    if (_.isEmpty(value)) return;
                     children.parent().css('margin-left', "-"+value);
                     angular.forEach(children,function(child) {
                         $(child).css('margin-left', value);
@@ -104,7 +104,7 @@ angular.module('ngt', [])
                     });
                 }
                 return function linkFn(scope, element, attrs) {
-                    scope.$watch('horizontalGap', function(value)                         
+                    scope.$watch('horizontalGap', function(value) {
                         if (typeof value==="undefined") return;
                         scope.horizontalGap = value;
                         setHorizontalGap(value, $(element).children().children('.added-gap'));

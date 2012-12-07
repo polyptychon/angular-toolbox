@@ -34,16 +34,17 @@
       <form action="#" method="POST">
 
         <fieldset ngt-title="Προσθήκη Χρήστη" ngt-subtitle="(Νέα Εγγραφή)">
-            <input type="text" ng-model="gap">
-            <hbox horizontal-gap="{{gap}}">
-                <p>Hallo 1</p>
-                <p>Hallo 2</p>
-                <p>Hallo 1</p>
-                <p>Hallo 2</p>
-                <p>Hallo 1</p>
-                <p>Hallo 2</p>
-            </hbox>
-
+            <div ng-controller="TestHboxCtrl">
+                <input type="text" ng-model="gap">
+                <hbox horizontal-gap="{{gap}}">
+                    <p>Hallo 1</p>
+                    <p>Hallo 2</p>
+                    <p>Hallo 1</p>
+                    <p>Hallo 2</p>
+                    <p>Hallo 1</p>
+                    <p>Hallo 2</p>
+                </hbox>
+            </div>
             <hbox>
                 <vbox>
                     <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
