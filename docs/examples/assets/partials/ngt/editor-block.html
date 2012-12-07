@@ -1,0 +1,5 @@
+<div class="control-block">
+    <label class="control-label" for="{{ngtId}}">{{title}}</label>
+    <textarea ui-if="false" class="editor-block" rows="{{rows}}" cols="{{cols}}" id="{{ngtId}}" name="{{name}}"></textarea>
+    <textarea ui-if="true" ui-tinymce ng-model="tinymce"></textarea>
+</div>

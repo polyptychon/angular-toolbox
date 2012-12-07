@@ -39,7 +39,6 @@ angular.module('ngt', [])
                                 $(child).css('margin-bottom', value);
                             }
                         });
-
                     });
                 }
             }
@@ -97,7 +96,7 @@ angular.module('ngt', [])
     .directive('inputBlock', function($http, $parse, $compile) {
         return {
             restrict: 'E',
-            templateUrl: "assets/partials/ngt/input-box.html",
+            templateUrl: "assets/partials/ngt/input-block.html",
             scope: {
                 title: "@",
                 ngtId: "@",
@@ -108,7 +107,7 @@ angular.module('ngt', [])
     .directive('inputEmailBlock', function($http, $parse, $compile) {
         return {
             restrict: 'E',
-            templateUrl: "assets/partials/ngt/input-email-box.html",
+            templateUrl: "assets/partials/ngt/input-email-block.html",
             scope: {
                 title: "@",
                 ngtId: "@",
@@ -119,11 +118,46 @@ angular.module('ngt', [])
     .directive('inputTextfieldBlock', function($http, $parse, $compile) {
         return {
             restrict: 'E',
-            templateUrl: "assets/partials/ngt/input-email-box.html",
+            templateUrl: "assets/partials/ngt/input-email-block.html",
             scope: {
                 title: "@",
                 ngtId: "@",
                 name: "@"
+            }
+        }
+    })
+    .directive('inputIntegerBlock', function($http, $parse, $compile) {
+        return {
+            restrict: 'E',
+            templateUrl: "assets/partials/ngt/input-integer-block.html",
+            scope: {
+                title: "@",
+                ngtId: "@",
+                name: "@"
+            }
+        }
+    })
+    .directive('inputCheckboxBlock', function($http, $parse, $compile) {
+        return {
+            restrict: 'E',
+            templateUrl: "assets/partials/ngt/input-checkbox-block.html",
+            scope: {
+                title: "@",
+                ngtId: "@",
+                name: "@"
+            }
+        }
+    })
+    .directive('editorBlock', function($http, $parse, $compile) {
+        return {
+            restrict: 'E',
+            templateUrl: "assets/partials/ngt/editor-block.html",
+            scope: {
+                title: "@",
+                ngtId: "@",
+                name: "@",
+                cols: "@",
+                rows: "@"
             }
         }
     })
