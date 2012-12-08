@@ -53,20 +53,20 @@ angular.module('ngt', [])
     .directive('vbox', function($http, $parse, $compile) {
         return {
             restrict: 'E',
+            transclude: true,
+            template: '<div class="ngt-vbox" ng-transclude=""></div>',
             scope: {
                 verticalGap: "@"
             },
-            compile: function(element, attrs) {
+            compile: function(element, attrs, transclude) {
                 if (typeof attrs.verticalGap==="undefined") attrs.verticalGap = "0px";
-                setVerticalGap(attrs.verticalGap, $(element).children());
-                element.html('<div class="ngt-vbox">'+element.html()+'</div>');
 
                 function setVerticalGap(value, children) {
                     if (_.isEmpty(value)) value = "0px";
                     var length = children.length;
                     angular.forEach(children,function(child) {
                         $(child).addClass('added-gap');
-                        if ($(child).index()<length-1) {
+                        if ($(child).index()<length-2) {
                             $(child).css('margin-bottom', value);
                         }
                     });
@@ -76,7 +76,7 @@ angular.module('ngt', [])
                     scope.$watch('verticalGap', function(value) {
                         if (typeof value==="undefined") return;
                         scope.verticalGap = value;
-                        setVerticalGap(value, $(element).children().children('.added-gap'));
+                        setVerticalGap(value, $(element).children().children());
                     });
                 }
             }
@@ -85,14 +85,13 @@ angular.module('ngt', [])
     .directive('hbox', function($http, $parse, $compile) {
         return {
             restrict: 'E',
+            transclude: true,
+            template: '<div class="ngt-hbox" ng-transclude=""></div>',
             scope: {
                 horizontalGap: "@"
             },
-            compile: function(element, attrs) {
-                if (typeof attrs.horizontalGap==="undefined") attrs.horizontalGap = "20px";
-                setHorizontalGap(attrs.horizontalGap, $(element).children());
-                element.html('<div class="ngt-hbox" style="margin-left:-'+attrs.horizontalGap+'">'+element.html()+'</div>');
-
+            compile: function(element, attrs, transclude) {
+                if (typeof attrs.horizontalGap==="undefined") attrs.horizontalGap = "10px";
                 function setHorizontalGap(value, children) {
                     if (_.isEmpty(value)) value = "0px";
                     children.parent().css('margin-left', "-"+value);
@@ -105,7 +104,7 @@ angular.module('ngt', [])
                     scope.$watch('horizontalGap', function(value) {
                         if (typeof value==="undefined") return;
                         scope.horizontalGap = value;
-                        setHorizontalGap(value, $(element).children().children('.added-gap'));
+                        setHorizontalGap(value, $(element).children().children());
                     });
 
                 }
@@ -214,12 +213,12 @@ angular.module('ngt', [])
 
 function ngModelBinding(scope, elm, attrs, $parse) {
     scope.$watch('ngModel', function(value) {
+        console.log(value);
         if (typeof value==="undefined") return;
         scope.inputValue = value;
     });
     scope.$watch('inputValue', function(value) {
-        if (typeof value==="undefined") return;
-        if (typeof attrs.ngModel==="undefined") return;
+        if (typeof value==="undefined" || attrs.ngModel==="undefined") return;
         $parse(attrs.ngModel).assign(scope.$parent, value);
     });
 }
