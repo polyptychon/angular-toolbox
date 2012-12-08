@@ -36,7 +36,7 @@
         <fieldset ngt-title="Προσθήκη Χρήστη" ngt-subtitle="(Νέα Εγγραφή)">
             <div ng-controller="TestBoxCtrl">
                 <input type="text" ng-model="gap">
-                <hbox horizontal-gap="{{gap}}">
+                <hbox horizontal-gap="{{gap}}" class="clearfix">
                     <p>Hallo 1</p>
                     <p>Hallo 2</p>
                     <p>Hallo 1</p>
@@ -45,7 +45,7 @@
                     <p>Hallo 2</p>
                 </hbox>
             </div>
-            <div ng-controller="TestBoxCtrl" style="clear: left;">
+            <div ng-controller="TestBoxCtrl">
                 <input type="text" ng-model="gap">
                 <vbox vertical-gap="{{gap}}">
                     <p>Hallo 1</p>
@@ -57,7 +57,7 @@
                 </vbox>
             </div>
             <hbox>
-                <vbox vertical-gap="20px">
+                <vbox>
                     <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
                     <input-email-block title="Email" helper-text="Είναι το email στο οποιο θα μπορεί το σύστημα να σας στέλνει αυτόματες ειδοποιήσεις" name="user[email]" ngt-id="user_email" required required-error-text="Το email είναι απαραίτητο" format-error-text="Το email πρέπει να είναι της μορφής 'user@test.com'"></input-email-block>
                 </vbox>

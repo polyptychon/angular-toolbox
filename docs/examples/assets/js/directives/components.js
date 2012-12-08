@@ -92,7 +92,6 @@ angular.module('ngt', [])
             compile: function(element, attrs) {
                 if (typeof attrs.horizontalGap==="undefined") attrs.horizontalGap = "20px";
                 setHorizontalGap(attrs.horizontalGap, $(element).children());
-
                 element.html('<div class="ngt-hbox" style="margin-left:-'+attrs.horizontalGap+'">'+element.html()+'</div>');
 
                 function setHorizontalGap(value, children) {
