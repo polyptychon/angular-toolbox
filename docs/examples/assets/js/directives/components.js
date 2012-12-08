@@ -57,7 +57,6 @@ angular.module('ngt', [])
                 verticalGap: "@"
             },
             compile: function(element, attrs) {
-                console.log(attrs.verticalGap);
                 if (typeof attrs.verticalGap==="undefined") attrs.verticalGap = "0px";
                 angular.forEach($(element).children(),function(child) {
                     if ($(child).index()!=$(element).children().length-1) {
