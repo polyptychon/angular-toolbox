@@ -43,10 +43,10 @@
         <!-- ANGULAR COMPONENTS : START -->
         <fieldset ngt-title="Προσθήκη Επιπέδου" ngt-subtitle="(Νέα Εγγραφή)">
             <vbox>
+                <input type="text" ngt-label="help2" id="help2">
+                <input-block ng-model="checkValue" title="Τίτλος" helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" name="layer[title]" id="layer_title" required="true" required-error-text="Ο τίτλος είναι απαραίτητος"></input-block>
 
-                <input-block title="Τίτλος" helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" name="layer[title]" id="layer_title" required="true" required-error-text="Ο τίτλος είναι απαραίτητος"></input-block>
-
-                <input-block title="Κωδικός" helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό" name="layer[code]" id="layer_code" required="true" required-error-text="Ο κωδικός είναι απαραίτητος" format="[A-Za-z]" format-error-text="Ο κωδικός πρέπει να αποτελείται αποκλειστικά από ΑΓΓΛΙΚΟΥΣ χαρακτήρες"></input-block>
+                <input-password-block title="Κωδικός" helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό" name="layer[code]" id="layer_code" required="true" required-error-text="Ο κωδικός είναι απαραίτητος" format="[A-Za-z]" format-error-text="Ο κωδικός πρέπει να αποτελείται αποκλειστικά από ΑΓΓΛΙΚΟΥΣ χαρακτήρες"></input-password-block>
                 <input-integer-block title="Σειρά εμφάνισης" helper-text="Καθορίζει τη σειρά με την οποία θα εμφανίζεται το επίπεδο στο χάρτη" name="layer[position]" id="layer_position"></input-integer-block>
 
                 <input-checkbox-block ng-model="checkValue" title="Ενεργό" helper-text="Καθορίζει το αν θα εμφανίζεται ή όχι στο χάρτη" name="layer[is_active]" id="layer_is_active"></input-checkbox-block>

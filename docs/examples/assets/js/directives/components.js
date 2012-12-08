@@ -112,6 +112,19 @@ angular.module('ngt', [])
             }
         }
     })
+    .directive('ngtLabel', function($http, $parse, $compile) {
+        return {
+            restrict: 'A',
+            replace: false,
+            link: function(scope, element, attrs) {
+                var id = attrs.id;
+                var label = (typeof attrs.ngtLabel==="undefined") ? "" : attrs.ngtLabel;
+                var labelElement = $('<label class="control-label" for="'+attrs.id+'">'+label+'</label>')
+                $(element).wrap($('<div class="control-block"></div>'));
+                $(element).before(labelElement);
+            }
+        }
+    })
     .directive('inputBlock', function($http, $parse, $compile) {
         return {
             restrict: 'E',

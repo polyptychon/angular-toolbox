@@ -9,6 +9,7 @@ function TestBoxCtrl($scope) {
     $scope.gap = "1em";
 }
 function TestEditorCtrl($scope) {
+    $scope.ngtLabelTest = "test";
     $scope.editorValue = "test";
     $scope.checkValue = true;
 }
