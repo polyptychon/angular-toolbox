@@ -58,25 +58,26 @@ angular.module('ngt', [])
             },
             compile: function(element, attrs) {
                 if (typeof attrs.verticalGap==="undefined") attrs.verticalGap = "0px";
-                angular.forEach($(element).children(),function(child) {
-                    if ($(child).index()!=$(element).children().length-1) {
-                        $(child).addClass('added-gap');
-                        $(child).css('margin-bottom', attrs.verticalGap);
-                    }
-                });
+                setVerticalGap(attrs.verticalGap, $(element).children());
+
                 element.html('<div class="ngt-vbox">'+element.html()+'</div>');
+
+                function setVerticalGap(value, children) {
+                    if (_.isEmpty(value)) value = "0px";
+                    var length = children.length;
+                    angular.forEach(children,function(child) {
+                        if ($(child).index()<length) {
+                            $(child).addClass('added-gap');
+                            $(child).css('margin-bottom', value);
+                        }
+                    });
+                }
 
                 return function linkFn(scope, element, attrs) {
                     scope.$watch('verticalGap', function(value) {
                         if (typeof value==="undefined") return;
                         scope.verticalGap = value;
-                        var children = $(element).children().children('.added-gap');
-                        angular.forEach(children,function(child) {
-                            if ($(child).index()!=children.length-1) {
-                                $(child).addClass('added-gap');
-                                $(child).css('margin-bottom', value);
-                            }
-                        });
+                        setVerticalGap(value, $(element).children().children('.added-gap'));
                     });
                 }
             }
@@ -95,7 +96,7 @@ angular.module('ngt', [])
                 element.html('<div class="ngt-hbox" style="margin-left:-'+attrs.horizontalGap+'">'+element.html()+'</div>');
 
                 function setHorizontalGap(value, children) {
-                    if (_.isEmpty(value)) return;
+                    if (_.isEmpty(value)) value = "0px";
                     children.parent().css('margin-left', "-"+value);
                     angular.forEach(children,function(child) {
                         $(child).css('margin-left', value);

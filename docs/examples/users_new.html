@@ -45,6 +45,17 @@
                     <p>Hallo 2</p>
                 </hbox>
             </div>
+            <div ng-controller="TestHboxCtrl" style="clear: left;">
+                <input type="text" ng-model="gap">
+                <vbox vertical-gap="{{gap}}">
+                    <p>Hallo 1</p>
+                    <p>Hallo 2</p>
+                    <p>Hallo 1</p>
+                    <p>Hallo 2</p>
+                    <p>Hallo 1</p>
+                    <p>Hallo 2</p>
+                </vbox>
+            </div>
             <hbox>
                 <vbox vertical-gap="20px">
                     <input-block title="Όνομα Χρήστη" helper-text="Είναι το όνομα με το οποιο θα κάνετε login" name="user[username]" ngt-id="user_username" required="true" required-error-text="Το όνομα χρήστη είναι απαραίτητο"></input-block>
