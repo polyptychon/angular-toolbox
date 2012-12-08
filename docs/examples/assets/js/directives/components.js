@@ -213,12 +213,15 @@ angular.module('ngt', [])
 
 function ngModelBinding(scope, elm, attrs, $parse) {
     scope.$watch('ngModel', function(value) {
-        console.log(value);
         if (typeof value==="undefined") return;
         scope.inputValue = value;
     });
     scope.$watch('inputValue', function(value) {
-        if (typeof value==="undefined" || attrs.ngModel==="undefined") return;
+        console.log(value);
+        if (typeof value==="undefined") return;
+        if (typeof attrs.ngModel==="undefined") return;
+        if (typeof $parse(attrs.ngModel).assign==="undefined") return;
+
         $parse(attrs.ngModel).assign(scope.$parent, value);
     });
 }
