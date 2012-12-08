@@ -63,6 +63,7 @@ angular.module('ngt', [])
 
                 function setVerticalGap(value, children) {
                     if (_.isEmpty(value)) value = "0px";
+                    children.parent().css('margin-top', "-"+value);
                     var length = children.length;
                     angular.forEach(children,function(child) {
                         $(child).addClass('added-gap');
@@ -143,10 +144,10 @@ angular.module('ngt', [])
             }
         }
     })
-    .directive('inputTextfieldBlock', function($http, $parse, $compile) {
+    .directive('inputPasswordBlock', function($http, $parse, $compile) {
         return {
             restrict: 'E',
-            templateUrl: "assets/partials/ngt/input-email-block.html",
+            templateUrl: "assets/partials/ngt/input-password-block.html",
             scope: {
                 style: "@",
                 title: "@",
