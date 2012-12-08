@@ -217,11 +217,7 @@ function ngModelBinding(scope, elm, attrs, $parse) {
         scope.inputValue = value;
     });
     scope.$watch('inputValue', function(value) {
-        console.log(value);
-        if (typeof value==="undefined") return;
-        if (typeof attrs.ngModel==="undefined") return;
-        if (typeof $parse(attrs.ngModel).assign==="undefined") return;
-
+        if (typeof value==="undefined" || typeof attrs.ngModel==="undefined") return;
         $parse(attrs.ngModel).assign(scope.$parent, value);
     });
 }
