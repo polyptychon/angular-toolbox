@@ -66,8 +66,8 @@ angular.module('ngt', [])
                     if (_.isEmpty(value)) value = "0px";
                     var length = children.length;
                     angular.forEach(children,function(child) {
-                        if ($(child).index()<length) {
-                            $(child).addClass('added-gap');
+                        $(child).addClass('added-gap');
+                        if ($(child).index()<length-1) {
                             $(child).css('margin-bottom', value);
                         }
                     });

@@ -5,6 +5,6 @@ angular.module('exampleApp', ['ngt', 'ui.directives']);
 function CodeMirrorCtrl($scope) {
     $scope.codeMirrorModel = "var helloWorld = 'Success!';";
 }
-function TestHboxCtrl($scope) {
+function TestBoxCtrl($scope) {
     $scope.gap = "1em";
 }
