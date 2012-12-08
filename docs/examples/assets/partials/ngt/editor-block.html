@@ -2,13 +2,13 @@
     <label class="control-label" for="{{ngtId}}">{{title}}</label>
     <div ng-switch on="editorMarkupType" class="editor-block-switch">
         <div ng-switch-when="html">
-            <textarea style="width: 100%; height:100%;" ui-tinymce ng-model="tinymce"></textarea>
+            <textarea style="width: 100%; height:100%;" ui-tinymce ng-model="inputValue"></textarea>
         </div>
         <div ng-switch-when="json">
-            <textarea style="width: 100%; height:100%;" ui-codemirror="{theme:'monokai'}" ng-model="codeMirrorModel"></textarea>
+            <textarea style="width: 100%; height:100%;" ui-codemirror="{theme:'monokai'}" ng-model="inputValue"></textarea>
         </div>
         <div ng-switch-default style="padding-right: 15px;">
-            <textarea style="width: 100%; height: 100%;" class="editor-block-default" rows="{{rows}}" cols="{{cols}}" id="{{ngtId}}" name="{{name}}"></textarea>
+            <textarea style="width: 100%; height: 100%;" class="editor-block-default" rows="{{rows}}" cols="{{cols}}" id="{{ngtId}}" name="{{name}}" ng-model="inputValue"></textarea>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
   clear: left;
   display: block;
 }
-.ngt-hbox > * {
+.ngt-hbox > .added-gap {
   float: left;
 }
 .ngt-vbox {

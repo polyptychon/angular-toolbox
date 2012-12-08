@@ -59,7 +59,6 @@ angular.module('ngt', [])
             compile: function(element, attrs) {
                 if (typeof attrs.verticalGap==="undefined") attrs.verticalGap = "0px";
                 setVerticalGap(attrs.verticalGap, $(element).children());
-
                 element.html('<div class="ngt-vbox">'+element.html()+'</div>');
 
                 function setVerticalGap(value, children) {
@@ -121,7 +120,11 @@ angular.module('ngt', [])
                 style: "@",
                 title: "@",
                 ngtId: "@",
-                name: "@"
+                name: "@",
+                ngModel: "="
+            },
+            link: function (scope, elm, attrs) {
+                ngModelBinding(scope, elm, attrs, $parse);
             }
         }
     })
@@ -133,7 +136,11 @@ angular.module('ngt', [])
                 style: "@",
                 title: "@",
                 ngtId: "@",
-                name: "@"
+                name: "@",
+                ngModel: "="
+            },
+            link: function (scope, elm, attrs) {
+                ngModelBinding(scope, elm, attrs, $parse);
             }
         }
     })
@@ -145,7 +152,11 @@ angular.module('ngt', [])
                 style: "@",
                 title: "@",
                 ngtId: "@",
-                name: "@"
+                name: "@",
+                ngModel: "="
+            },
+            link: function (scope, elm, attrs) {
+                ngModelBinding(scope, elm, attrs, $parse);
             }
         }
     })
@@ -157,7 +168,11 @@ angular.module('ngt', [])
                 style: "@",
                 title: "@",
                 ngtId: "@",
-                name: "@"
+                name: "@",
+                ngModel: "="
+            },
+            link: function (scope, elm, attrs) {
+                ngModelBinding(scope, elm, attrs, $parse);
             }
         }
     })
@@ -169,7 +184,11 @@ angular.module('ngt', [])
                 style: "@",
                 title: "@",
                 ngtId: "@",
-                name: "@"
+                name: "@",
+                ngModel: "="
+            },
+            link: function (scope, elm, attrs) {
+                ngModelBinding(scope, elm, attrs, $parse);
             }
         }
     })
@@ -184,7 +203,23 @@ angular.module('ngt', [])
                 name: "@",
                 cols: "@",
                 rows: "@",
-                editorMarkupType: "@"
+                editorMarkupType: "@",
+                ngModel: "="
+            },
+            link: function (scope, elm, attrs) {
+                ngModelBinding(scope, elm, attrs, $parse);
             }
         }
     })
+
+function ngModelBinding(scope, elm, attrs, $parse) {
+    scope.$watch('ngModel', function(value) {
+        if (typeof value==="undefined") return;
+        scope.inputValue = value;
+    });
+    scope.$watch('inputValue', function(value) {
+        if (typeof value==="undefined") return;
+        if (typeof attrs.ngModel==="undefined") return;
+        $parse(attrs.ngModel).assign(scope.$parent, value);
+    });
+}
