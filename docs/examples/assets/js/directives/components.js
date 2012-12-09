@@ -146,7 +146,6 @@ angular.module('ngt', [])
                         function(value) {
                             if (typeof value==="undefined" || scope.ngModel===value) return;
                             scope.ngModel = value;
-                            scope.error.isEmpty = _.isEmpty(value);
                             $(element).val(value);
                         }
                     );
