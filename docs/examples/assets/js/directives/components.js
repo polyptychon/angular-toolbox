@@ -40,31 +40,56 @@ angular.module('ngt', [])
         }
     })
     .directive('ngtLabel', function($http, $parse, $compile) {
+        var templateURL = "assets/partials/ngt/ngt-label.html";
         return {
             restrict: 'A',
-            replace: false,
-            link: function(scope, element, attrs) {
-                var id = attrs.id;
-                var label = (typeof attrs.ngtLabel==="undefined") ? "" : attrs.ngtLabel;
-                var labelElement = $('<label class="control-label" for="'+attrs.id+'">'+label+'</label>')
-                $(element).wrap($('<div class="control-block"></div>'));
-                $(element).before(labelElement);
+            scope: true,
+            compile: function(element, attrs) {
+                return function(scope, element, attrs) {
+                    if (!$(element).parent().hasClass('control-block')) {
+                        $(element).wrap($('<div class="control-block"></div>'));
+                    }
+                    scope.ngtLabel = "";
+                    $http.get(templateURL).success(function(data) {
+                        $(element).before($compile(data)(scope));
+                    });
+                    scope.$watch(
+                        function(scope) {
+                            return attrs.ngtLabel;
+                        },
+                        function(value) {
+                            scope.ngtLabel = value;
+                        }
+                    );
+                    scope.$watch(
+                        function(scope) {
+                            return attrs.id;
+                        },
+                        function(value) {
+                            scope.id = value;
+                        }
+                    );
+                }
             }
         }
     })
     .directive('ngtHelperText', function($http, $parse, $compile) {
+        var popoverTemplate = '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>';
         return {
             restrict: 'A',
-            scope: {
-                ngtHelperText: "@"
-            },
+            scope: true,
             compile: function(element, attrs) {
                 return function(scope, element, attrs) {
-                    scope.$watch('ngtHelperText', function(value) {
-                        var errorMessage = angular.isUndefined(value)?"test":value;
-                        $(element).popover('destroy');
-                        $(element).popover({content:errorMessage, trigger: "focus"});
-                    });
+                    scope.$watch(
+                        function(scope) {
+                            return attrs.ngtHelperText;
+                        },
+                        function(value) {
+                            var helperText = angular.isUndefined(value)?"":value;
+                            $(element).popover('destroy');
+                            $(element).popover({content:helperText, trigger: "focus", template:popoverTemplate});
+                        }
+                    );
                 }
             }
         }
@@ -72,15 +97,45 @@ angular.module('ngt', [])
     .directive('ngtTooltip', function($http, $parse, $compile) {
         return {
             restrict: 'A',
-            scope: {
-                ngtTooltip: "@"
-            },
+            scope: true,
             compile: function(element, attrs) {
                 return function(scope, element, attrs) {
-                    scope.$watch('ngtTooltip', function(value) {
-                        var title = angular.isUndefined(value)?"test":value;
-                        $(element).tooltip({title:title});
+                    scope.$watch(
+                        function(scope) {
+                            return attrs.ngtTooltip;
+                        },
+                        function(value) {
+                            var title = angular.isUndefined(value)?"test":value;
+                            $(element).tooltip({title:title});
+                        }
+                    );
+                }
+            }
+        }
+    })
+    .directive('ngtError', function($http, $parse, $compile) {
+        var templateURL = "assets/partials/ngt/ngt-error.html";
+        return {
+            restrict: 'A',
+            scope: true,
+            compile: function(element, attrs) {
+                return function(scope, element, attrs) {
+                    if (!$(element).parent().hasClass('control-block')) {
+                        $(element).wrap($('<div class="control-block"></div>'));
+                    }
+                    scope.ngtError = "";
+                    $http.get(templateURL).success(function(data) {
+                        $(element).after($compile(data)(scope));
                     });
+                    scope.$watch(
+                        function(scope) {
+                            return attrs.ngtError;
+                        },
+                        function(value) {
+                            scope.ngtError = value;
+                            scope.showError = !_.isEmpty(value);
+                        }
+                    );
                 }
             }
         }

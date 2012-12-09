@@ -43,7 +43,10 @@
         <!-- ANGULAR COMPONENTS : START -->
         <fieldset ngt-title="Προσθήκη Επιπέδου" ngt-subtitle="(Νέα Εγγραφή)">
             <vbox>
-                <input type="email" id="help2" ngt-label="help2" ngt-helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" required>
+
+                <input type="email" id="help2" ngt-label="help2" ngt-helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" ngt-error="Το πεδίο είναι απαραίτητο" required>
+                <input type="email" id="help3" ngt-label="help3" ngt-helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό" ngt-error="Το πεδίο είναι απαραίτητο" required>
+
                 <input-block ng-model="checkValue" title="Τίτλος" helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" name="layer[title]" id="layer_title" required="true" required-error-text="Ο τίτλος είναι απαραίτητος"></input-block>
 
                 <input-password-block title="Κωδικός" helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό" name="layer[code]" id="layer_code" required="true" required-error-text="Ο κωδικός είναι απαραίτητος" format="[A-Za-z]" format-error-text="Ο κωδικός πρέπει να αποτελείται αποκλειστικά από ΑΓΓΛΙΚΟΥΣ χαρακτήρες"></input-password-block>
