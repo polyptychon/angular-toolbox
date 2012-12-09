@@ -39,6 +39,52 @@ angular.module('ngt', [])
             }
         }
     })
+    .directive('ngtLabel', function($http, $parse, $compile) {
+        return {
+            restrict: 'A',
+            replace: false,
+            link: function(scope, element, attrs) {
+                var id = attrs.id;
+                var label = (typeof attrs.ngtLabel==="undefined") ? "" : attrs.ngtLabel;
+                var labelElement = $('<label class="control-label" for="'+attrs.id+'">'+label+'</label>')
+                $(element).wrap($('<div class="control-block"></div>'));
+                $(element).before(labelElement);
+            }
+        }
+    })
+    .directive('ngtHelperText', function($http, $parse, $compile) {
+        return {
+            restrict: 'A',
+            scope: {
+                ngtHelperText: "@"
+            },
+            compile: function(element, attrs) {
+                return function(scope, element, attrs) {
+                    scope.$watch('ngtHelperText', function(value) {
+                        var errorMessage = angular.isUndefined(value)?"test":value;
+                        $(element).popover('destroy');
+                        $(element).popover({content:errorMessage, trigger: "focus"});
+                    });
+                }
+            }
+        }
+    })
+    .directive('ngtTooltip', function($http, $parse, $compile) {
+        return {
+            restrict: 'A',
+            scope: {
+                ngtTooltip: "@"
+            },
+            compile: function(element, attrs) {
+                return function(scope, element, attrs) {
+                    scope.$watch('ngtTooltip', function(value) {
+                        var title = angular.isUndefined(value)?"test":value;
+                        $(element).tooltip({title:title});
+                    });
+                }
+            }
+        }
+    })
     .directive('ngtTitle', function($http, $parse, $compile) {
         return {
             restrict: 'A',
@@ -109,19 +155,6 @@ angular.module('ngt', [])
                     });
 
                 }
-            }
-        }
-    })
-    .directive('ngtLabel', function($http, $parse, $compile) {
-        return {
-            restrict: 'A',
-            replace: false,
-            link: function(scope, element, attrs) {
-                var id = attrs.id;
-                var label = (typeof attrs.ngtLabel==="undefined") ? "" : attrs.ngtLabel;
-                var labelElement = $('<label class="control-label" for="'+attrs.id+'">'+label+'</label>')
-                $(element).wrap($('<div class="control-block"></div>'));
-                $(element).before(labelElement);
             }
         }
     })
