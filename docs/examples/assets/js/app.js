@@ -12,4 +12,10 @@ function TestEditorCtrl($scope) {
     $scope.ngtLabelTest = "test";
     $scope.editorValue = "test";
     $scope.checkValue = true;
+    $scope.help3 = "test";
+
+    $scope.errorText = function(value, label) {
+        console.log($scope.$eval(value));
+        return _.isEmpty(value)?label:"";
+    }
 }

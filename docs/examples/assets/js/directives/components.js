@@ -69,6 +69,7 @@ angular.module('ngt', [])
                             scope.id = value;
                         }
                     );
+                    ngModelInputBind(scope, element, attrs, $parse);
                 }
             }
         }
@@ -90,6 +91,7 @@ angular.module('ngt', [])
                             $(element).popover({content:helperText, trigger: "focus", template:popoverTemplate});
                         }
                     );
+                    ngModelInputBind(scope, element, attrs, $parse);
                 }
             }
         }
@@ -109,6 +111,7 @@ angular.module('ngt', [])
                             $(element).tooltip({title:title});
                         }
                     );
+                    ngModelInputBind(scope, element, attrs, $parse);
                 }
             }
         }
@@ -119,7 +122,7 @@ angular.module('ngt', [])
             restrict: 'A',
             scope: true,
             compile: function(element, attrs) {
-                return function(scope, element, attrs) {
+                return function(scope, element, attrs, ngModel) {
                     if (!$(element).parent().hasClass('control-block')) {
                         $(element).wrap($('<div class="control-block"></div>'));
                     }
@@ -136,6 +139,7 @@ angular.module('ngt', [])
                             scope.showError = !_.isEmpty(value);
                         }
                     );
+                    ngModelInputBind(scope, element, attrs, $parse);
                 }
             }
         }
@@ -322,4 +326,22 @@ function ngModelBinding(scope, elm, attrs, $parse) {
         if (typeof value==="undefined" || typeof attrs.ngModel==="undefined") return;
         $parse(attrs.ngModel).assign(scope.$parent, value);
     });
+}
+function ngModelInputBind(scope, element, attrs, $parse) {
+    scope.$watch(
+        function(scope) {
+            return scope.$parent.$eval(attrs.ngModel);
+        },
+        function(value) {
+            if (typeof value==="undefined" || scope.ngModel===value) return;
+            scope.ngModel = value;
+            $(element).val(value);
+        }
+    );
+    element.unbind('blur keyup change')
+        .bind('blur keyup change', function() {
+            if (scope.ngModel===$(element).val()) return;
+            $parse(attrs.ngModel).assign(scope.$parent, $(element).val());
+            scope.$parent.$apply();
+        });
 }
