@@ -15,7 +15,6 @@ function TestEditorCtrl($scope) {
     $scope.help3 = "test";
 
     $scope.errorText = function(value, label) {
-        console.log($scope.$eval(value));
         return _.isEmpty(value)?label:"";
     }
 }

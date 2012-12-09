@@ -127,6 +127,7 @@ angular.module('ngt', [])
                         $(element).wrap($('<div class="control-block"></div>'));
                     }
                     scope.ngtError = "";
+                    scope.error = {}
                     $http.get(templateURL).success(function(data) {
                         $(element).after($compile(data)(scope));
                     });
@@ -136,10 +137,30 @@ angular.module('ngt', [])
                         },
                         function(value) {
                             scope.ngtError = value;
-                            scope.showError = !_.isEmpty(value);
                         }
                     );
-                    ngModelInputBind(scope, element, attrs, $parse);
+                    scope.$watch(
+                        function(scope) {
+                            return scope.$parent.$eval(attrs.ngModel);
+                        },
+                        function(value) {
+                            if (typeof value==="undefined" || scope.ngModel===value) return;
+                            scope.ngModel = value;
+                            scope.error.isEmpty = _.isEmpty(value);
+                            $(element).val(value);
+                        }
+                    );
+                    element.bind('blur keyup change', function() {
+                        if (scope.ngModel===$(element).val()) return;
+                        scope.error.isEmpty = _.isEmpty($(element).val());
+                        if (angular.isDefined(attrs.ngModel)) {
+                            $parse(attrs.ngModel).assign(scope.$parent, $(element).val());
+                            scope.$parent.$apply();
+                        } else {
+                            scope.$apply();
+                        }
+                    });
+
                 }
             }
         }
@@ -338,10 +359,11 @@ function ngModelInputBind(scope, element, attrs, $parse) {
             $(element).val(value);
         }
     );
-    element.unbind('blur keyup change')
-        .bind('blur keyup change', function() {
-            if (scope.ngModel===$(element).val()) return;
+    element.bind('blur keyup change', function() {
+        if (scope.ngModel===$(element).val()) return;
+        if (angular.isDefined(attrs.ngModel)) {
             $parse(attrs.ngModel).assign(scope.$parent, $(element).val());
             scope.$parent.$apply();
-        });
+        }
+    });
 }
