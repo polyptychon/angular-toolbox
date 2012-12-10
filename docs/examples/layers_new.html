@@ -59,7 +59,7 @@
                        required>
 
                 <input type="text" id="testCustom" ngt-label="Test custom pattern input"
-                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με custom validation (Μόνο αριθμούς)"
+                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με custom validation (Μόνο αριθμούς - float numbers)"
                        ngt-error="Το πεδίο είναι απαραίτητο"
                        ngt-error-pattern="^[-]?[0-9]+[\.\,]?[0-9]+$"
                        ngt-error-custom="Πρέπει να πληκτρολογήσετε ένα αριθμό"
@@ -68,7 +68,7 @@
                 <input type="text" id="testCustom2" ngt-label="Test custom pattern input"
                        ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με custom validation (Μόνο ελληνικούς χαρακτηρες)"
                        ngt-error="Το πεδίο είναι απαραίτητο"
-                       ngt-error-pattern=" [α-ωΑ-Ω]"
+                       ngt-error-pattern="^[α-ωΑ-Ω]+$"
                        ngt-error-custom="Πρέπει να πληκτρολογήσετε μόνο ελληνικούς χαρακτηρες"
                        required>
 
