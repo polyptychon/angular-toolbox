@@ -124,6 +124,8 @@ angular.module('ngt.directives')
         ngtConfig.vd.error = ngtConfig.vd.error || {};
 
         var error = {
+            type: "",
+            isInvalid: false,
             default: "",
             required: "Το πεδίο είναι απαραίτητο",
             email: "Πληκτρολογήστε μία σωστή διεύθυνση email",
@@ -136,10 +138,6 @@ angular.module('ngt.directives')
             scope: true,
             compile: function(element, attrs) {
                 return function(scope, element, attrs, ngModel) {
-                    scope.error = {
-                        type: "",
-                        isInvalid: false
-                    }
 
                     scope.vd = angular.extend({}, ngtConfig.vd);
                     scope.vd.error = angular.extend({}, error, ngtConfig.vd.error);
@@ -167,9 +165,11 @@ angular.module('ngt.directives')
                             scope.validate();
                         }
                     );
-                    element.bind('blur keyup change', function() {
+                    element.bind('blur keyup change', function(event) {
                         if (scope.ngModel===$(element).val()) return;
-                        scope.validate();
+                        if (event.type=="blur" || scope.vd.error.isInvalid) {
+                            scope.validate();
+                        }
                         if (angular.isDefined(attrs.ngModel)) {
                             $parse(attrs.ngModel).assign(scope.$parent, $(element).val());
                             scope.$parent.$apply();
@@ -179,21 +179,21 @@ angular.module('ngt.directives')
                     });
 
                     scope.validate = function() {
-                        scope.error.type = "";
-                        scope.error.isInvalid = true;
+                        scope.vd.error.type = "";
+                        scope.vd.error.isInvalid = true;
                         var required = element.attr('required'),
                             type = element.attr('type'),
                             elementValue = $(element).val(),
                             emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
                         if ((angular.isDefined(required) && required!=="false") && _.isEmpty(elementValue)) {
-                            scope.error.type = "required";
+                            scope.vd.error.type = "required";
                         } else if (angular.isDefined(type) && type==="email" && !emailReg.test(elementValue)) {
-                            scope.error.type = "email";
+                            scope.vd.error.type = "email";
                         } else if (angular.isDefined(scope.vd.pattern) && !new RegExp(scope.vd.pattern).test(elementValue)) {
-                            scope.error.type = "pattern";
+                            scope.vd.error.type = "pattern";
                         } else {
-                            scope.error.isInvalid = false;
+                            scope.vd.error.isInvalid = false;
                         }
                     }
 
