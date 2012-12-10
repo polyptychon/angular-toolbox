@@ -154,10 +154,21 @@ angular.module('ngt', [])
                             if (typeof value==="undefined" || scope.ngModel===value) return;
                             scope.ngModel = value;
                             $(element).val(value);
+                            scope.validate();
                         }
                     );
                     element.bind('blur keyup change', function() {
                         if (scope.ngModel===$(element).val()) return;
+                        scope.validate();
+                        if (angular.isDefined(attrs.ngModel)) {
+                            $parse(attrs.ngModel).assign(scope.$parent, $(element).val());
+                            scope.$parent.$apply();
+                        } else {
+                            scope.$apply();
+                        }
+                    });
+
+                    scope.validate = function() {
                         scope.error.type = "empty";
                         scope.error.isInvalid = true;
                         var required = element.attr('required'),
@@ -174,14 +185,7 @@ angular.module('ngt', [])
                         } else {
                             scope.error.isInvalid = false;
                         }
-
-                        if (angular.isDefined(attrs.ngModel)) {
-                            $parse(attrs.ngModel).assign(scope.$parent, elementValue);
-                            scope.$parent.$apply();
-                        } else {
-                            scope.$apply();
-                        }
-                    });
+                    }
 
                 }
             }
