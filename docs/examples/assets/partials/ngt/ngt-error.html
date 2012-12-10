@@ -1,11 +1,14 @@
 <div ng-switch on="error.type" ng-show="error.isInvalid">
-    <div ng-switch-when="email" class="alert alert-error fade in">
-        <span>{{$parent.ngtErrorEmail}}</span>
+    <div ng-switch-when="required" class="alert alert-error fade in">
+        <span>{{$parent.vd.error.required}}</span>
     </div>
-    <div ng-switch-when="custom" class="alert alert-error fade in">
-        <span>{{$parent.ngtErrorCustom}}</span>
+    <div ng-switch-when="email" class="alert alert-error fade in">
+        <span>{{$parent.vd.error.email}}</span>
+    </div>
+    <div ng-switch-when="pattern" class="alert alert-error fade in">
+        <span>{{$parent.vd.error.pattern}}</span>
     </div>
     <div ng-switch-default class="alert alert-error fade in">
-        <span>{{$parent.ngtError}}</span>
+        <span>{{$parent.vd.error.default}}</span>
     </div>
 </div>

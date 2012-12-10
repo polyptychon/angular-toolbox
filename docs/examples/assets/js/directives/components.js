@@ -1,6 +1,8 @@
-'use strict';
+angular.module('ngt.config', []).value('ngt.config', {});
+angular.module('ngt.directives', ['ngt.config']);
+angular.module('ngt', ['ngt.directives', 'ngt.config']);
 
-angular.module('ngt', [])
+angular.module('ngt.directives')
     .directive('ngtAutoHeight', function($http, $parse, $compile) {
         return {
             restrict: 'A',
@@ -116,36 +118,44 @@ angular.module('ngt', [])
             }
         }
     })
-    .directive('ngtError', function($http, $parse, $compile) {
+    .directive('ngtVd', ['$http','$parse','$compile','ngt.config', function($http, $parse, $compile, ngtConfig) {
+
+        ngtConfig.vd = ngtConfig.vd || {};
+        ngtConfig.vd.error = ngtConfig.vd.error || {};
+
+        var error = {
+            default: "",
+            required: "Το πεδίο είναι απαραίτητο",
+            email: "Πληκτρολογήστε μία σωστή διεύθυνση email",
+            pattern: ""
+        };
+
         var templateURL = "assets/partials/ngt/ngt-error.html";
         return {
             restrict: 'A',
             scope: true,
             compile: function(element, attrs) {
                 return function(scope, element, attrs, ngModel) {
+                    scope.error = {
+                        type: "",
+                        isInvalid: false
+                    }
+
+                    scope.vd = angular.extend({}, ngtConfig.vd);
+                    scope.vd.error = angular.extend({}, error, ngtConfig.vd.error);
+
                     if (!$(element).parent().hasClass('control-block')) {
                         $(element).wrap($('<div class="control-block"></div>'));
                     }
-                    scope.ngtError = "";
-                    scope.error = {
-                        type: "empty",
-                        isInvalid: false
-                    }
+
                     $http.get(templateURL).success(function(data) {
                         $(element).after($compile(data)(scope));
                     });
-                    scope.$watch(
-                        function(scope) { return attrs.ngtError; }, function(value) { scope.ngtError = value; }
-                    );
-                    scope.$watch(
-                        function(scope) { return attrs.ngtErrorEmail; }, function(value) { scope.ngtErrorEmail = value; }
-                    );
-                    scope.$watch(
-                        function(scope) { return attrs.ngtErrorPattern; }, function(value) { scope.ngtErrorPattern = value; }
-                    );
-                    scope.$watch(
-                        function(scope) { return attrs.ngtErrorCustom; }, function(value) { scope.ngtErrorCustom = value; }
-                    );
+                    scope.$watch(function(scope) { return attrs.ngtVdErrorRequired; }, function(value) { if (angular.isDefined(value)) scope.vd.error.required = value; });
+                    scope.$watch(function(scope) { return attrs.ngtVdErrorEmail; }, function(value) { if (angular.isDefined(value)) scope.vd.error.email = value; });
+                    scope.$watch(function(scope) { return attrs.ngtVdErrorPattern; }, function(value) { if (angular.isDefined(value)) scope.vd.error.pattern = value; });
+                    scope.$watch(function(scope) { return attrs.ngtVdPattern; }, function(value) { if (angular.isDefined(value)) scope.vd.pattern = value; });
+
                     scope.$watch(
                         function(scope) {
                             return scope.$parent.$eval(attrs.ngModel);
@@ -169,7 +179,7 @@ angular.module('ngt', [])
                     });
 
                     scope.validate = function() {
-                        scope.error.type = "empty";
+                        scope.error.type = "";
                         scope.error.isInvalid = true;
                         var required = element.attr('required'),
                             type = element.attr('type'),
@@ -177,11 +187,11 @@ angular.module('ngt', [])
                             emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
                         if ((angular.isDefined(required) && required!=="false") && _.isEmpty(elementValue)) {
-                            scope.error.type = "empty";
+                            scope.error.type = "required";
                         } else if (angular.isDefined(type) && type==="email" && !emailReg.test(elementValue)) {
                             scope.error.type = "email";
-                        } else if (angular.isDefined(scope.ngtErrorPattern) && !new RegExp(scope.ngtErrorPattern).test(elementValue)) {
-                            scope.error.type = "custom";
+                        } else if (angular.isDefined(scope.vd.pattern) && !new RegExp(scope.vd.pattern).test(elementValue)) {
+                            scope.error.type = "pattern";
                         } else {
                             scope.error.isInvalid = false;
                         }
@@ -190,7 +200,7 @@ angular.module('ngt', [])
                 }
             }
         }
-    })
+    }])
     .directive('ngtTitle', function($http, $parse, $compile) {
         return {
             restrict: 'A',
