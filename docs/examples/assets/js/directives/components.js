@@ -151,7 +151,10 @@ angular.module('ngt', [])
                     );
                     element.bind('blur keyup change', function() {
                         if (scope.ngModel===$(element).val()) return;
-                        scope.error.isEmpty = _.isEmpty($(element).val());
+                        var required = element.attr('required');
+                        if (angular.isDefined(required) && required!=="false") {
+                            scope.error.isEmpty = _.isEmpty($(element).val());
+                        }
                         if (angular.isDefined(attrs.ngModel)) {
                             $parse(attrs.ngModel).assign(scope.$parent, $(element).val());
                             scope.$parent.$apply();
