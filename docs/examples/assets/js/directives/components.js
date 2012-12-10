@@ -129,6 +129,9 @@ angular.module('ngt.directives')
             default: "",
             required: "Το πεδίο είναι απαραίτητο",
             email: "Πληκτρολογήστε μία σωστή διεύθυνση email",
+            number: "Πληκτρολογήστε έναν αριθμό",
+            date: "Πληκτρολογήστε μία σωστή ημερομηνία (dd/mm/yyyy)",
+            time: "Πληκτρολογήστε μία σωστή ώρα (HH:MM:SS)",
             pattern: ""
         };
 
@@ -167,9 +170,9 @@ angular.module('ngt.directives')
                     );
                     element.bind('blur keyup change', function(event) {
                         if (scope.ngModel===$(element).val()) return;
-                        if (event.type=="blur" || scope.vd.error.isInvalid) {
+                        //if (event.type=="blur" || scope.vd.error.isInvalid) {
                             scope.validate();
-                        }
+                        //}
                         if (angular.isDefined(attrs.ngModel)) {
                             $parse(attrs.ngModel).assign(scope.$parent, $(element).val());
                             scope.$parent.$apply();
@@ -179,17 +182,28 @@ angular.module('ngt.directives')
                     });
 
                     scope.validate = function() {
-                        scope.vd.error.type = "";
-                        scope.vd.error.isInvalid = true;
                         var required = element.attr('required'),
                             type = element.attr('type'),
                             elementValue = $(element).val(),
-                            emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+                            emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+                            isIntegerReg = /^\s*(\+|-)?\d+\s*$/,
+                            isNumberReg = /^\s*(\+|-)?((\d+(\.\d+)?)|(\.\d+))\s*$/,
+                            isDateReg = /^(((0[1-9]|[12][0-9]|3[01])[- /.](0[13578]|1[02])|(0[1-9]|[12][0-9]|30)[- /.](0[469]|11)|(0[1-9]|1\d|2[0-8])[- /.]02)[- /.]\d{4}|29[- /.]02[- /.](\d{2}(0[48]|[2468][048]|[13579][26])|([02468][048]|[1359][26])00))$/,
+                            isTimeReg = /^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9])(:([0-5]?[0-9]))?$/;
+
+                        scope.vd.error.type = "";
+                        scope.vd.error.isInvalid = true;
 
                         if ((angular.isDefined(required) && required!=="false") && _.isEmpty(elementValue)) {
                             scope.vd.error.type = "required";
                         } else if (angular.isDefined(type) && type==="email" && !emailReg.test(elementValue)) {
                             scope.vd.error.type = "email";
+                        } else if (angular.isDefined(type) && type==="number" && !isNumberReg.test(elementValue)) {
+                            scope.vd.error.type = "number";
+                        } else if (angular.isDefined(type) && type==="date" && !isDateReg.test(elementValue)) {
+                            scope.vd.error.type = "date";
+                        } else if (angular.isDefined(type) && type==="time" && !isTimeReg.test(elementValue)) {
+                            scope.vd.error.type = "time";
                         } else if (angular.isDefined(scope.vd.pattern) && !new RegExp(scope.vd.pattern).test(elementValue)) {
                             scope.vd.error.type = "pattern";
                         } else {

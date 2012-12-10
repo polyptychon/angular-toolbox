@@ -44,7 +44,8 @@
             exampleApp.value('ngt.config',{
                 vd: {
                     error: {
-                        required : "value required"
+                        required : "value required",
+                        email: "Please use a valid email"
                     }
                 }
             });
@@ -56,16 +57,24 @@
                 <input type="text" id="testText" ngt-label="Test text input not required"
                        ngt-helper-text="Πεδίο χωρίς validation με label και helper">
 
-                <input type="email" id="testTextRequired" ngt-label="Email επικοινωνίας"
-                       ngt-helper-text="Η ηλεκτρονική διεύθυνση στην οποία θα σας στέλνουμε ειδοποιήσεις"
+                <input type="time" id="testDateTimeRequired" ngt-label="Test time input"
+                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με time validation"
                        ngt-vd required>
 
-               <input type="email" id="testTextRequired2" ngt-label="Εναλλακτικό email ()"
-                      ngt-helper-text="Email για λόγους ασφαλείας ανα έχετε ξεχάσει τον κωδικός σας"
-                      ngt-vd required>
+                <input type="date" id="testDateRequired" ngt-label="Test date input"
+                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με date validation"
+                       ngt-vd required>
+
+                <input type="number" id="testNumberRequired" ngt-label="Test number input"
+                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με number validation"
+                       ngt-vd required>
 
                 <input type="email" id="testEmail" ngt-label="Test email input"
-                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και email"
+                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με email validation"
+                       ngt-vd required>
+
+                <input type="email" id="testEmail2" ngt-label="Test email input custom error"
+                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και email με custom error required message"
                        ngt-vd-error-required="value required"
                        ngt-vd required>
 

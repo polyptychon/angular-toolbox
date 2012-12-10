@@ -5,6 +5,15 @@
     <div ng-switch-when="email" class="alert alert-error fade in">
         <span>{{$parent.vd.error.email}}</span>
     </div>
+    <div ng-switch-when="number" class="alert alert-error fade in">
+        <span>{{$parent.vd.error.number}}</span>
+    </div>
+    <div ng-switch-when="date" class="alert alert-error fade in">
+        <span>{{$parent.vd.error.date}}</span>
+    </div>
+    <div ng-switch-when="time" class="alert alert-error fade in">
+        <span>{{$parent.vd.error.time}}</span>
+    </div>
     <div ng-switch-when="pattern" class="alert alert-error fade in">
         <span>{{$parent.vd.error.pattern}}</span>
     </div>
