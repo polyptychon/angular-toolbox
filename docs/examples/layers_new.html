@@ -43,12 +43,28 @@
         <!-- ANGULAR COMPONENTS : START -->
         <fieldset ngt-title="Προσθήκη Επιπέδου" ngt-subtitle="(Νέα Εγγραφή)">
             <vbox>
-                <div ng-controller="TestEditorCtrl">
-                    <input type="email" id="help2" ngt-label="help2" ngt-helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη"
-                    ngt-error="Το πεδίο είναι απαραίτητο" required>
-                    <input type="email" id="help3" ngt-label="help3" ngt-helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό"
-                    ngt-error="Το πεδίο είναι απαραίτητο" required>
-                </div>
+                <input type="text" id="testText" ngt-label="Test text input not required"
+                       ngt-helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη">
+
+                <input type="text" id="testTextRequired" ngt-label="Test text input required"
+                       ngt-helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη"
+                       ngt-error="Το πεδίο είναι απαραίτητο"
+                       ngt-error-email="Πρέπει να πληκτρολογήσετε ένα email"
+                       required>
+
+                <input type="email" id="testEmail" ngt-label="Test email input"
+                       ngt-helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό"
+                       ngt-error="Το πεδίο είναι απαραίτητο"
+                       ngt-error-email="Πρέπει να πληκτρολογήσετε ένα email"
+                       required>
+
+                <input type="text" id="testCustom" ngt-label="Test custom pattern input"
+                       ngt-helper-text="Είναι o μοναδικός κωδικός ο οποίος θα αναπαριστά το επίπεδο αυτό"
+                       ngt-error="Το πεδίο είναι απαραίτητο"
+                       ngt-error-pattern="/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/"
+                       ngt-error-custom="Πρέπει να πληκτρολογήσετε ένα email"
+                       required>
+
                 <!--
                 <input-block ng-model="help3" title="Τίτλος" helper-text="Είναι το όνομα το οποίο θα φαίνεται στο χάρτη" name="layer[title]" id="layer_title" required="true" required-error-text="Ο τίτλος είναι απαραίτητος"></input-block>
 

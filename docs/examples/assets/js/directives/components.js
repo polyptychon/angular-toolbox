@@ -127,17 +127,24 @@ angular.module('ngt', [])
                         $(element).wrap($('<div class="control-block"></div>'));
                     }
                     scope.ngtError = "";
-                    scope.error = {}
+                    scope.error = {
+                        type: "empty",
+                        isInvalid: false
+                    }
                     $http.get(templateURL).success(function(data) {
                         $(element).after($compile(data)(scope));
                     });
                     scope.$watch(
-                        function(scope) {
-                            return attrs.ngtError;
-                        },
-                        function(value) {
-                            scope.ngtError = value;
-                        }
+                        function(scope) { return attrs.ngtError; }, function(value) { scope.ngtError = value; }
+                    );
+                    scope.$watch(
+                        function(scope) { return attrs.ngtErrorEmail; }, function(value) { scope.ngtErrorEmail = value; }
+                    );
+                    scope.$watch(
+                        function(scope) { return attrs.ngtErrorPattern; }, function(value) { scope.ngtErrorPattern = value; }
+                    );
+                    scope.$watch(
+                        function(scope) { return attrs.ngtErrorCustom; }, function(value) { scope.ngtErrorCustom = value; }
                     );
                     scope.$watch(
                         function(scope) {
@@ -151,12 +158,25 @@ angular.module('ngt', [])
                     );
                     element.bind('blur keyup change', function() {
                         if (scope.ngModel===$(element).val()) return;
-                        var required = element.attr('required');
-                        if (angular.isDefined(required) && required!=="false") {
-                            scope.error.isEmpty = _.isEmpty($(element).val());
+                        scope.error.type = "empty";
+                        scope.error.isInvalid = true;
+                        var required = element.attr('required'),
+                            type = element.attr('type'),
+                            elementValue = $(element).val(),
+                            emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+                        if ((angular.isDefined(required) && required!=="false") && _.isEmpty(elementValue)) {
+                            scope.error.type = "empty";
+                        } else if (angular.isDefined(type) && type==="email" && !emailReg.test(elementValue)) {
+                            scope.error.type = "email";
+                        } else if (angular.isDefined(scope.ngtErrorPattern) && !new RegExp(scope.ngtErrorPattern).test(elementValue)) {
+                            scope.error.type = "custom";
+                        } else {
+                            scope.error.isInvalid = false;
                         }
+
                         if (angular.isDefined(attrs.ngModel)) {
-                            $parse(attrs.ngModel).assign(scope.$parent, $(element).val());
+                            $parse(attrs.ngModel).assign(scope.$parent, elementValue);
                             scope.$parent.$apply();
                         } else {
                             scope.$apply();
