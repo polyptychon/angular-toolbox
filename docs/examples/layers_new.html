@@ -66,6 +66,14 @@
                        ngt-error-email="Πρέπει να πληκτρολογήσετε ένα email"
                        required>
 
+                <input type="text" id="testCustom" ngt-label="Test custom pattern input"
+                       ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με custom validation (Μόνο αριθμούς - float numbers)"
+                       ngt-vd
+                       ngt-vd-error-required="Το πεδίο είναι απαραίτητο"
+                       ngt-vd-pattern="^[-]?[0-9]+[\.\,]?[0-9]+$"
+                       ngt-vd-error-pattern="Πρέπει να πληκτρολογήσετε ένα αριθμό"
+                       required>
+
 <!--                 <input type="text" id="testCustom" ngt-label="Test custom pattern input"
                        ngt-helper-text="Δοκιμή πεδίου όταν είναι απαραίτητο και με custom validation (Μόνο αριθμούς - float numbers)"
                        ngt-error-required="Το πεδίο είναι απαραίτητο"
